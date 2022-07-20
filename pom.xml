@@ -12,7 +12,7 @@
         <module>provider</module>
         <module>sentinel</module>
         <module>consumer</module>
-        <module>configModule</module>
+        <module>commons</module>
     </modules>
 
 
