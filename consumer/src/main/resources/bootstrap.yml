@@ -1,0 +1,57 @@
+server:
+  port: 8762
+spring:
+  application:
+    name: cloud-consumer
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848  #nacos作为服务注册中心地址
+      config:
+        server-addr: 127.0.0.1:8848  #nacos作为配置中心地址
+        file-extension: yaml #指定yaml格式的配置
+        namespace:     #nacos配置中心的namespace，需要注意，如果使用public的namespace，请不要填写这个值，直接留空即可
+    sentinel:
+      transport:
+        #配置 Sentinel dashboard 地址
+        dashboard: localhost:8998
+        #默认8719端口，假如被占用会自动从8719开始依次+1扫描,直至找到未被占用的端口
+        port: 8719
+  zipkin:
+    sender:
+      type: web
+    base-url: http://localhost:9411
+    service:
+      name: consumer
+  sleuth:
+    sampler:
+      probability: 1
+
+#开启sentinel 对 feign的支持
+feign:
+  sentinel:
+    enabled: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+seata:
+  config:
+    type: nacos
+    nacos:
+      server-addr: 127.0.0.1:8848 # Nacos 配置中心的地址
+      group : "SEATA_GROUP"  #分组
+      namespace: ""
+      username: "nacos"   #Nacos 配置中心的用于名
+      password: "nacos"  #Nacos 配置中心的密码
+logging:
+  level:
+    com:
+      alibaba:
+        nacos:
+          client:
+            naming: error
