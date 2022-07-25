@@ -32,6 +32,7 @@ spring:
     name: cloud-consumer
   profiles:
     active: dev
+    include:
   cloud:
     nacos:
       discovery:
@@ -66,16 +67,58 @@ management:
       exposure:
         include: '*'
 
+# seata配置
 seata:
+  # 默认关闭，如需启用spring.datasource.dynami.seata需要同时开启
+  enabled: true
+  # Seata 应用编号，默认为 ${spring.application.name}
+  application-id: ${spring.application.name}
+  # Seata 事务组编号，用于 TC 集群名。该配置需要与服务端提到的group相对应，也需要与下面的相对应
+  tx-service-group: ${spring.application.name}-group
+  # 关闭自动代理
+  # enable-auto-data-source-proxy: flase
+  # 服务配置项
+  service:
+    # 虚拟组和分组的映射
+    vgroupMapping:
+      cloud-consumer-group: default   #该配置需要与服务端提到的group相对应
+    grouplist:
+      default: 127.0.0.1:8091
   config:
+    # support: nacos, consul, apollo, zk, etcd3
     type: nacos
     nacos:
-      server-addr: 127.0.0.1:8848 # Nacos 配置中心的地址
-      group : "SEATA_GROUP"  #分组
-      namespace: ""
-      username: "nacos"   #Nacos 配置中心的用于名
-      password: "nacos"  #Nacos 配置中心的密码
+      serverAddr: 127.0.0.1:8848
+      namespace:  # 需要与服务端添加的配置文件相同
+      group: SEATA_GROUP
+      username: nacos
+      password: nacos
+      file-extension: yml
+      shared-configs:
+        - dataId: seata-server.yml # 需要与服务端添加的配置文件相同
+          namespace:  # 需要与服务端添加的配置文件相同
+          group: SEATA_GROUP # 需要与服务端添加的配置文件相同
+  registry:
+    # support: nacos, eureka, redis, zk, consul, etcd3, sofa
+    type: nacos
+    nacos:
+      serverAddr: 127.0.0.1:8848
+      namespace:   # 需要与服务端添加的配置文件相同
+      group: SEATA_GROUP	# 需要与服务端添加的配置文件相同
+      username: nacos
+      password: nacos
+      file-extension: yml
+      shared-configs:
+        - dataId: seata-server.yml	# 需要与服务端添加的配置文件相同
+          namespace:  # 需要与服务端添加的配置文件相同
+          group: SEATA_GROUP # 需要与服务端添加的配置文件相同
+
 
 mybatis-plus:
+  global-config:
+    banner: false
   configuration:
+    map-underscore-to-camel-case: true
+    auto-mapping-behavior: full
     log-impl: org.apache.ibatis.logging.nologging.NoLoggingImpl
+  type-aliases-package: com.lutw.seata

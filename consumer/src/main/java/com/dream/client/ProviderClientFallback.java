@@ -8,4 +8,10 @@ public class ProviderClientFallback implements ProviderClient {
     public String hi(String name) {
         return name + "sorry";
     }
+
+
+    @Override
+    public void createUser() {
+
+    }
 }

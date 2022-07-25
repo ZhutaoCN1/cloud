@@ -1,17 +1,16 @@
 package com.dream.service.impl;
+import java.time.LocalDateTime;
 
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.dream.client.ProviderClient;
 import com.dream.entity.SysUser;
 import com.dream.mapper.SysUserMapper;
 import com.dream.service.ISysUserService;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import io.seata.spring.annotation.GlobalTransactional;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
  * <p>
- * 服务实现类
+ *  服务实现类
  * </p>
  *
  * @author BigZ
@@ -20,16 +19,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> implements ISysUserService {
 
-    @Autowired
-    ProviderClient providerClient;
-
     @Override
     @GlobalTransactional(rollbackFor = Exception.class)
     public void createUser() {
         SysUser sysUser = new SysUser();
-        sysUser.setName("李四");
-        sysUser.setAddr("西安");
+        sysUser.setName("张三");
+        sysUser.setAddr("成都");
         save(sysUser);
-        providerClient.createUser();
+        throw new RuntimeException();
     }
 }
