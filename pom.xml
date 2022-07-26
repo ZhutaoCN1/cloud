@@ -11,8 +11,9 @@
     <modules>
         <module>provider</module>
         <module>consumer</module>
-        <module>commons</module>
         <module>doc-cover</module>
+        <module>gateway</module>
+        <module>common</module>
     </modules>
 
 
@@ -60,6 +61,10 @@
             <groupId>com.github.xiaoymin</groupId>
             <artifactId>knife4j-spring-boot-starter</artifactId>
             <version>3.0.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
         </dependency>
     </dependencies>
 
