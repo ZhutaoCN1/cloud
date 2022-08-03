@@ -7,6 +7,7 @@ import com.dream.service.ISysUserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import io.seata.spring.annotation.GlobalTransactional;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * <p>
@@ -20,7 +21,8 @@ import org.springframework.stereotype.Service;
 public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> implements ISysUserService {
 
     @Override
-    @GlobalTransactional(rollbackFor = Exception.class)
+//    @GlobalTransactional(rollbackFor = Exception.class)
+//    @Transactional(rollbackFor = Exception.class)
     public void createUser() {
         SysUser sysUser = new SysUser();
         sysUser.setName("张三");

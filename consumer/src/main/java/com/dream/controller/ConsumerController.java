@@ -52,7 +52,7 @@ public class ConsumerController {
         return providerClient.hi(name);
     }
 
-    @Value("${config.info}")
+//    @Value("${config.info}")
     private String configInfo;
 
     @GetMapping("/config")

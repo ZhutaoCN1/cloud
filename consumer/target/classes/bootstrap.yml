@@ -36,9 +36,9 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: 127.0.0.1:8848  #nacos作为服务注册中心地址
+        server-addr: 124.223.56.147:8848  #nacos作为服务注册中心地址
       config:
-        server-addr: 127.0.0.1:8848  #nacos作为配置中心地址
+        server-addr: 124.223.56.147:8848  #nacos作为配置中心地址
         file-extension: yaml #指定yaml格式的配置
         namespace:     #nacos配置中心的namespace，需要注意，如果使用public的namespace，请不要填写这个值，直接留空即可
     sentinel:
@@ -88,11 +88,11 @@ seata:
     # support: nacos, consul, apollo, zk, etcd3
     type: nacos
     nacos:
-      serverAddr: 127.0.0.1:8848
+      serverAddr: 124.223.56.147:8848
       namespace:  # 需要与服务端添加的配置文件相同
       group: SEATA_GROUP
-      username: nacos
-      password: nacos
+#      username: nacos   # nacos开启用户密码，要不然控制台一致报unknow user ，登陆失败
+#      password: nacos   # nacos开启用户密码，要不然控制台一致报unknow user ，登陆失败
       file-extension: yml
       shared-configs:
         - dataId: seata-server.yml # 需要与服务端添加的配置文件相同
@@ -102,11 +102,11 @@ seata:
     # support: nacos, eureka, redis, zk, consul, etcd3, sofa
     type: nacos
     nacos:
-      serverAddr: 127.0.0.1:8848
+      serverAddr: 124.223.56.147:8848
       namespace:   # 需要与服务端添加的配置文件相同
       group: SEATA_GROUP	# 需要与服务端添加的配置文件相同
-      username: nacos
-      password: nacos
+#      username: nacos   # nacos开启用户密码，要不然控制台一致报unknow user ，登陆失败
+#      password: nacos   # nacos开启用户密码，要不然控制台一致报unknow user ，登陆失败
       file-extension: yml
       shared-configs:
         - dataId: seata-server.yml	# 需要与服务端添加的配置文件相同

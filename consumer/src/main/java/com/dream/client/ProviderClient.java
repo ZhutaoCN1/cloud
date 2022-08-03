@@ -5,8 +5,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-//@FeignClient(value = "cloud-provider",fallback = ProviderClientFallback.class)
-@FeignClient(value = "cloud-provider")
+@FeignClient(value = "cloud-provider",fallback = ProviderClientFallback.class)
+//@FeignClient(value = "cloud-provider")
 public interface ProviderClient {
 
     @GetMapping("/provider/hi")
