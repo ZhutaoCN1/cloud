@@ -3,6 +3,9 @@ package com.dream.controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @Description
  * @Author zhutao
@@ -12,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class TestController {
 
     @GetMapping("/get")
-    public void print() {
-        System.out.println("123");
+    public List<Object> print() {
+        return new ArrayList<>();
     }
 }
